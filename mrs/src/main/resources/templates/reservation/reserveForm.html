@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title th:text="|${#temporals.format(date, 'yyyy/M/d')}の${room.roomName}|"></title>
 </head>
-<body>
+
+<body th:with="user=${#authentication.principal.user}">
     <div>
         <a th:href="@{'/rooms/' + ${date}}">会議室一覧へ</a>
     </div>
@@ -13,11 +15,11 @@
 
     <form th:object="${reservationForm}" th:action="@{'/reservations/' + ${date} + '/' + ${roomId}}" method="POST">
         会議室：<span th:text="${room.roomName}"></span>
-        <br/>
+        <br />
         予約者名：<span th:text="${user.lastName + ' ' + user.firstName}"></span>
-        <br/>
+        <br />
         日付：<span th:text="${#temporals.format(date, 'yyyy/M/d')}"></span>
-        <br/>
+        <br />
         時間帯：
         <select th:field="*{startTime}">
             <option th:each="time : ${timeList}" th:text="${time}" th:value="${time}"></option>
@@ -28,7 +30,7 @@
             <option th:each="time : ${timeList}" th:text="${time}" th:value="${time}"></option>
         </select>
         <span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}" style="color:red"></span>
-        <br/>
+        <br />
         <button>予約</button>
     </form>
 
@@ -49,7 +51,8 @@
                 <span th:text="${reservation.user.firstName}"></span>
             </td>
             <td>
-                <form th:action="@{'/reservations/' + ${date} + '/' + ${roomId}}" method="POST" th:if="${user.userId == reservation.user.userId}">
+                <form th:action="@{'/reservations/' + ${date} + '/' + ${roomId}}" method="POST"
+                    sec:authorize="${hasRole('ADMIN') or #vars.user.userId == #vars.reservation.user.userId}">
                     <input type="hidden" name="reservationId" th:value="${reservation.reservationId}">
                     <input type="submit" name="cancel" value="取消">
                 </form>
@@ -57,4 +60,5 @@
         </tr>
     </table>
 </body>
+
 </html>

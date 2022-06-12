@@ -3,6 +3,7 @@ package mrs.domain.service.reservation;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import mrs.domain.model.ReservableRoom;
@@ -27,7 +28,7 @@ public class ReservationService {
     Reservation reservation = reservationRepository.findById(reservationId).get();
     if (Role.ADMIN != requestUser.getRoleName()
         && !Objects.equals(reservation.getUser().getUserId(), requestUser.getUserId())) {
-      throw new IllegalStateException("要求されたキャンセルは許可できません。");
+      throw new AccessDeniedException("要求されたキャンセルは許可できません。");
     }
     reservationRepository.delete(reservation);
   }
