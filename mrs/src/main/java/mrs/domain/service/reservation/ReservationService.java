@@ -2,11 +2,9 @@ package mrs.domain.service.reservation;
 
 import java.util.List;
 import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import mrs.domain.model.ReservableRoom;
 import mrs.domain.model.ReservableRoomId;
 import mrs.domain.model.Reservation;
@@ -44,7 +42,9 @@ public class ReservationService {
     ReservableRoomId reservableRoomId = reservation.getReservableRoom().getReservableRoomId();
 
     // 対象の部屋が予約可能かどうかチェック
-    ReservableRoom reservable = reservableRoomRepository.findById(reservableRoomId).get();
+    // 悲観ロック
+    ReservableRoom reservable =
+        reservableRoomRepository.findOneForUpdateByReservableRoomId(reservableRoomId);
     if (reservable == null) {
       // 例外をスローする。
       throw new UnavailableReservationException("入力の日付・部屋の組み合わせは予約できません。");
