@@ -9,9 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class ReservableRoom implements Serializable {
 
 	private static final long serialVersionUID = -4375167871276853186L;
@@ -24,4 +26,7 @@ public class ReservableRoom implements Serializable {
 	@MapsId("roomId")
 	private MeetingRoom meetingRoom;
 	
+	public ReservableRoom(ReservableRoomId reservableRoomId) {
+		this.reservableRoomId = reservableRoomId;
+	}
 }

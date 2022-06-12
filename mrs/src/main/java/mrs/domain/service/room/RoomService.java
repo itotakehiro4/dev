@@ -1,43 +1,41 @@
 package mrs.domain.service.room;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import mrs.domain.model.MeetingRoom;
 import mrs.domain.model.ReservableRoom;
-import mrs.domain.model.ReservableRoomId;
+import mrs.domain.repository.room.MeetingRoomRepository;
 import mrs.domain.repository.room.ReservableRoomRepository;
 
 @Service
 @Transactional
 public class RoomService {
 
-//	@Autowired
-//	ReservableRoomRepository reservableRoomRepository;
+	@Autowired
+	private MeetingRoomRepository meetingRoomRepository;
+	
+	@Autowired
+	private ReservableRoomRepository reservableRoomRepository;
 
-	public List<ReservableRoom> findReservableRooms(LocalDate date) {
-		return createReservableRoomList();
+	/**
+	 * 会議室取得
+	 * @param roomId 部屋ID
+	 * @return 会議室情報
+	 */
+	public MeetingRoom findMeetingRoom(Integer roomId) {
+		return meetingRoomRepository.findById(roomId).get();
 	}
-
-	private List<ReservableRoom> createReservableRoomList() {
-		List<ReservableRoom> list = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			ReservableRoom room = new ReservableRoom();
-			MeetingRoom meet = new MeetingRoom();
-			meet.setRoomId(i + 1);
-			meet.setRoomName("会議室" + (i + 1));
-			ReservableRoomId id = new ReservableRoomId();
-			id.setRoomId(i + 1);
-			id.setReservedDate(LocalDate.of(2022, i+1, i+1));
-			room.setMeetingRoom(meet);
-			room.setReservableRoomId(id);
-			list.add(room);
-		}
-		return list;
+	
+	/**
+	 * 予約情報一覧取得
+	 * @param date 予約日付
+	 * @return 予約情報一覧
+	 */
+	public List<ReservableRoom> findReservableRooms(LocalDate date) {
+		return reservableRoomRepository.findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(date);
 	}
 }
