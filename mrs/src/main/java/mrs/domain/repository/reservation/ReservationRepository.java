@@ -10,6 +10,4 @@ import mrs.domain.model.Reservation;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
 	List<Reservation> findByReservableRoom_ReservableRoomIdOrderByStartTimeAsc(ReservableRoomId reservableRoomId);
-
-	Reservation findOne(Integer reservationId);
 }

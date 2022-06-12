@@ -21,6 +21,7 @@ public class ReservationService {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
+
 	@Autowired
 	private ReservableRoomRepository reservableRoomRepository;
 	
