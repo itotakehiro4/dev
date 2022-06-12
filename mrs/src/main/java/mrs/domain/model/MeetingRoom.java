@@ -13,11 +13,11 @@ import lombok.Data;
 @Data
 public class MeetingRoom implements Serializable {
 
-	private static final long serialVersionUID = 7613003953437476906L;
+  private static final long serialVersionUID = 7613003953437476906L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer roomId;
-	
-	private String roomName;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer roomId;
+
+  private String roomName;
 }
