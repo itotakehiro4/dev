@@ -18,41 +18,43 @@ import lombok.Data;
 @Data
 public class Reservation implements Serializable {
 
-	private static final long serialVersionUID = -6557775226647678958L;
+  private static final long serialVersionUID = -6557775226647678958L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer reservationId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer reservationId;
 
-	private LocalTime startTime;
-	
-	private LocalTime endTime;
-	
-	@ManyToOne
-	@JoinColumns({@JoinColumn(name = "reserved_date"), @JoinColumn(name = "room_id")})
-	private ReservableRoom reservableRoom;
+  private LocalTime startTime;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+  private LocalTime endTime;
 
-	/**
-	 * 予約時間帯重複チェック
-	 * @param target 対象予約情報
-	 * @return チェック結果
-	 */
-	public boolean overlap(Reservation target) {
-		// 2つの予約の日付・部屋が別であれば重複していないため、falseを返却
-		if (!Objects.equals(reservableRoom.getReservableRoomId(), target.reservableRoom.getReservableRoomId())) {
-			return false;
-		}
-		
-		// 2つの予約の開始時刻と終了時刻が一致する場合は重複のため、trueを返却
-		if (startTime.equals(target.getStartTime()) && endTime.equals(target.endTime)) {
-			return true;
-		}
-		
-		// 2つの予約の開始時刻と終了時刻が交差しているか、または包含関係であるかを返却
-		return target.endTime.isAfter(startTime) && endTime.isAfter(target.startTime);
-	}
+  @ManyToOne
+  @JoinColumns({@JoinColumn(name = "reserved_date"), @JoinColumn(name = "room_id")})
+  private ReservableRoom reservableRoom;
+
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  /**
+   * 予約時間帯重複チェック
+   * 
+   * @param target 対象予約情報
+   * @return チェック結果
+   */
+  public boolean overlap(Reservation target) {
+    // 2つの予約の日付・部屋が別であれば重複していないため、falseを返却
+    if (!Objects.equals(reservableRoom.getReservableRoomId(),
+        target.reservableRoom.getReservableRoomId())) {
+      return false;
+    }
+
+    // 2つの予約の開始時刻と終了時刻が一致する場合は重複のため、trueを返却
+    if (startTime.equals(target.getStartTime()) && endTime.equals(target.endTime)) {
+      return true;
+    }
+
+    // 2つの予約の開始時刻と終了時刻が交差しているか、または包含関係であるかを返却
+    return target.endTime.isAfter(startTime) && endTime.isAfter(target.startTime);
+  }
 }

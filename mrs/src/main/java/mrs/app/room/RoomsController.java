@@ -16,6 +16,7 @@ import mrs.domain.service.room.RoomService;
 
 /**
  * 予約可能会議室一蘭表示コントローラ
+ * 
  * @author t_ito
  *
  */
@@ -23,21 +24,23 @@ import mrs.domain.service.room.RoomService;
 @RequestMapping("rooms")
 public class RoomsController {
 
-	@Autowired
-	private RoomService roomService;
+  @Autowired
+  private RoomService roomService;
 
-	@GetMapping(path = "{date}")
-	public String listRooms(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date, Model model) {
-		List<ReservableRoom> rooms = roomService.findReservableRooms(date);
-		model.addAttribute("date", date);
-		model.addAttribute("rooms", rooms);
-		return "room/listRooms";
-	}
-	
-	@GetMapping
-	public String listRooms(Model model) {
-		LocalDate today = LocalDate.now();
-		model.addAttribute("date", today);
-		return listRooms(today, model);
-	}
+  @GetMapping(path = "{date}")
+  public String listRooms(
+      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date,
+      Model model) {
+    List<ReservableRoom> rooms = roomService.findReservableRooms(date);
+    model.addAttribute("date", date);
+    model.addAttribute("rooms", rooms);
+    return "room/listRooms";
+  }
+
+  @GetMapping
+  public String listRooms(Model model) {
+    LocalDate today = LocalDate.now();
+    model.addAttribute("date", today);
+    return listRooms(today, model);
+  }
 }

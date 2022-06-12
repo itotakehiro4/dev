@@ -10,6 +10,7 @@ import mrs.domain.model.ReservableRoomId;
 
 public interface ReservableRoomRepository extends JpaRepository<ReservableRoom, ReservableRoomId> {
 
-	List<ReservableRoom> findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(LocalDate reservedDate);
+  List<ReservableRoom> findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(
+      LocalDate reservedDate);
 
 }

@@ -12,13 +12,13 @@ import lombok.Data;
 @Data
 public class ReservationForm implements Serializable {
 
-	private static final long serialVersionUID = -4953320549163307784L;
+  private static final long serialVersionUID = -4953320549163307784L;
 
-	@NotNull(message = "必須です")
-	@DateTimeFormat(pattern = "HH:mm")
-	private LocalTime startTime;
+  @NotNull(message = "必須です")
+  @DateTimeFormat(pattern = "HH:mm")
+  private LocalTime startTime;
 
-	@NotNull(message = "必須です")
-	@DateTimeFormat(pattern = "HH:mm")
-	private LocalTime endTime;
+  @NotNull(message = "必須です")
+  @DateTimeFormat(pattern = "HH:mm")
+  private LocalTime endTime;
 }

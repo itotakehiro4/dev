@@ -11,10 +11,10 @@ import lombok.Data;
 @Data
 public class ReservableRoomId implements Serializable {
 
-	private static final long serialVersionUID = 1992666431015096742L;
+  private static final long serialVersionUID = 1992666431015096742L;
 
-	private Integer roomId;
+  private Integer roomId;
 
-	private LocalDate reservedDate;
-	
+  private LocalDate reservedDate;
+
 }

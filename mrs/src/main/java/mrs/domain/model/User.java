@@ -15,17 +15,17 @@ import lombok.Data;
 @Data
 public class User implements Serializable {
 
-	private static final long serialVersionUID = -8739935870568178798L;
+  private static final long serialVersionUID = -8739935870568178798L;
 
-	@Id
-	private String userId;
+  @Id
+  private String userId;
 
-	private String password;
+  private String password;
 
-	private String firstName;
+  private String firstName;
 
-	private String lastName;
+  private String lastName;
 
-	@Enumerated(EnumType.STRING)
-	private Role roleName;
+  @Enumerated(EnumType.STRING)
+  private Role roleName;
 }
