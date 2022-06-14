@@ -1,10 +1,12 @@
-package mrs.app.reservation;
+package mrs.app.reservation.bean;
 
 import java.io.Serializable;
 import java.time.LocalTime;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
+import mrs.validator.EndTimeMustBeAfterStartTime;
+import mrs.validator.ThirtyMinutesUnit;
 
 @Data
 @EndTimeMustBeAfterStartTime(message = "終了時刻は開始時刻より後にしてください")

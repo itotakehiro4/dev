@@ -1,7 +1,8 @@
-package mrs.app.reservation;
+package mrs.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import mrs.app.reservation.bean.ReservationForm;
 
 public class EndTimeMustBeAfterStartTimeValidator
     implements ConstraintValidator<EndTimeMustBeAfterStartTime, ReservationForm> {

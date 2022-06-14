@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +19,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import mrs.app.reservation.bean.ReservationForm;
 import mrs.domain.model.ReservableRoom;
 import mrs.domain.model.ReservableRoomId;
 import mrs.domain.model.Reservation;
 import mrs.domain.model.User;
-import mrs.domain.service.reservation.AlreadyReservedException;
 import mrs.domain.service.reservation.ReservationService;
-import mrs.domain.service.reservation.UnavailableReservationException;
 import mrs.domain.service.room.RoomService;
 import mrs.domain.service.user.ReservationUserDetails;
+import mrs.exception.AlreadyReservedException;
+import mrs.exception.UnavailableReservationException;
 
 @Controller
 @RequestMapping("reservations/{date}/{roomId}")
@@ -70,7 +72,6 @@ public class ReservationsController {
     model.addAttribute("room", roomService.findMeetingRoom(roomId));
     model.addAttribute("reservations", reservations);
     model.addAttribute("timeList", timeList);
-    // model.addAttribute("user", dummyUser());
     return "reservation/reserveForm";
 
   }
@@ -129,7 +130,7 @@ public class ReservationsController {
     User user = userDetails.getUser();
     try {
       reservationService.cancel(reservationId, user);
-    } catch (IllegalStateException e) {
+    } catch (AccessDeniedException e) {
       model.addAttribute("error", e.getMessage());
       return reserveForm(date, roomId, model);
     }
