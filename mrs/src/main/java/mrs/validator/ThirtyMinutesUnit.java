@@ -1,4 +1,4 @@
-package mrs.app.reservation;
+package mrs.validator;
 
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.FIELD;

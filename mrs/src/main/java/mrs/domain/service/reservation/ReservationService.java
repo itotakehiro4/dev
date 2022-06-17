@@ -13,6 +13,8 @@ import mrs.domain.model.Role;
 import mrs.domain.model.User;
 import mrs.domain.repository.reservation.ReservationRepository;
 import mrs.domain.repository.room.ReservableRoomRepository;
+import mrs.exception.AlreadyReservedException;
+import mrs.exception.UnavailableReservationException;
 
 @Service
 @Transactional

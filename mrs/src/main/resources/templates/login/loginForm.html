@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF8"/>
-    <title></title>
-</head>
-<body>
-    <h3>ログインフォーム</h3>
-    <p th:if="${param.error}"></p>
-    <form th:action="@{/login}" method="POST">
-        <table>
-            <tr>
-                <td><label for="username">User:</label></td>
-                <td><input type="text" id="username" name="username" value="aaaa"></td>
-            </tr>
-            <tr>
-                <td><label for="password">Password:</label></td>
-                <td><input type="password" id="password" name="password" value="demo"></td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><button type="submit">ログイン</button></td>
-            </tr>
-        </table>
 
-    </form>
-</body>
+<head>
+    <meta http-equiv="Content-type" content="text/html" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/login/login.css}" rel="stylesheet">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+    <title>ログイン</title>
+</head>
+
+<div class="container text-center">
+    <div class="wrapper">
+        <div th:class="${param.error} ? 'alert-danger' : ''"></div>
+        <form th:action="@{/login}" method="POST" class="form-signin">
+            <h3 class="form-signin-heading">サインイン</h3>
+            <input class="form-control" type="text" id="username" name="username" placeholder="ユーザID" required=""
+                autofocus="">
+            <br/>
+            <input class="form-control" type="password" id="password" name="password" placeholder="パスワード" required="">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">ログイン</button>
+        </form>
+    </div>
+</div>
+
 </html>

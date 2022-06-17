@@ -1,4 +1,4 @@
-package mrs.app.reservation;
+package mrs.validator;
 
 import java.time.LocalTime;
 import javax.validation.ConstraintValidator;

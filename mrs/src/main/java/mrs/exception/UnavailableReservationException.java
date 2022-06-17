@@ -1,4 +1,4 @@
-package mrs.domain.service.reservation;
+package mrs.exception;
 
 public class UnavailableReservationException extends RuntimeException {
 
