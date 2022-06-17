@@ -2,6 +2,19 @@ package mrs.common.constant;
 
 public class MrsConst {
 
-  public static final String QUERY_LAZY_MTG_ROOM =
-      "SELECT DISTINCT x FROM ReservableRoom x LEFT JOIN FETCH x.meetingRoom WHERE x.reservableRoomId.reservedDate = :date ORDER BY x.reservableRoomId.roomId ASC";
+  public MrsConst() {}
+
+  /**
+   * エンドポイント
+   * 
+   * @author t_ito
+   *
+   */
+  public static final class EndPoint {
+    /**
+     * 会議室予約画面一覧表示
+     */
+    public static final String RESERVATION_RESERVEFORM = "reservation/reserveForm";
+
+  }
 }

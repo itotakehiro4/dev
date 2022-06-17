@@ -121,7 +121,7 @@ public class ReservationsController {
    * @param model
    * @return
    */
-  @PostMapping(params = "cancel")
+  @PostMapping("cancel")
   public String cancel(@AuthenticationPrincipal ReservationUserDetails userDetails,
       @RequestParam("reservationId") Integer reservationId, @PathVariable("roomId") Integer roomId,
       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @PathVariable("date") LocalDate date,

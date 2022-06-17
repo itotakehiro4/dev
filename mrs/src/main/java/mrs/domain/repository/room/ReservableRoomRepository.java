@@ -5,8 +5,6 @@ import java.util.List;
 import javax.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
-import org.springframework.data.jpa.repository.Query;
-import mrs.common.constant.MrsConst;
 import mrs.domain.model.ReservableRoom;
 import mrs.domain.model.ReservableRoomId;
 
@@ -15,7 +13,6 @@ public interface ReservableRoomRepository extends JpaRepository<ReservableRoom, 
   @Lock(LockModeType.PESSIMISTIC_WRITE)
   ReservableRoom findOneForUpdateByReservableRoomId(ReservableRoomId reservableRoomId);
 
-  @Query(MrsConst.QUERY_LAZY_MTG_ROOM)
   List<ReservableRoom> findByReservableRoomId_reservedDateOrderByReservableRoomId_roomIdAsc(
       LocalDate reservedDate);
 
