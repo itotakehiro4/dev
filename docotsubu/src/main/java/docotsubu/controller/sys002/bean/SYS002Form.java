@@ -8,4 +8,6 @@ public class SYS002Form implements Serializable {
 
   private static final long serialVersionUID = -4329860699202934584L;
 
+  private String text;
+
 }
