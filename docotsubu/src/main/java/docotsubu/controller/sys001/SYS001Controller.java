@@ -19,7 +19,7 @@ import docotsubu.service.sys00103.bean.SYS00103OutputBean;
 @RequestMapping("sys001")
 public class SYS001Controller {
 
-  private static final String VIEW_PATH = "login/login";
+  private static final String VIEW_PATH = "sys001/sys001";
 
   @Autowired
   private UserBean userBean;
@@ -65,7 +65,8 @@ public class SYS001Controller {
     }
 
     userBean.setUserId(outputBean.getUserId());
-    userBean.setPrvsrl(outputBean.getPrvsrl());
+    userBean.setUserName(outputBean.getUserName());
+    userBean.setPrvsrlId(outputBean.getPrvsrlId());
 
     return "redirect:/sys002/sys00201";
   }

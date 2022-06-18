@@ -10,6 +10,10 @@ public class SYS00103OutputBean implements Serializable {
 
   private String userId;
 
-  private String prvsrl;
+  private String userName;
+
+  private String password;
+
+  private String prvsrlId;
 
 }

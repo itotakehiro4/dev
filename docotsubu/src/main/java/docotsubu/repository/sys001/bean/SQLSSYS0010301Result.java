@@ -10,7 +10,11 @@ public class SQLSSYS0010301Result implements Serializable {
 
   private String userId;
 
+  private String userName;
+
   private String password;
+
+  private String prvsrlId;
 
   private Integer delFlg;
 

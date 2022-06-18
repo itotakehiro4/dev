@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import docotsubu.common.bean.UserBean;
 import docotsubu.common.exception.DocotsubuBusinessException;
-import docotsubu.controller.sys002.bean.SYS002Dsp;
 import docotsubu.service.sys00201.SYS00201Service;
 import docotsubu.service.sys00201.bean.SYS00201InputBean;
 import docotsubu.service.sys00201.bean.SYS00201OutputBean;
@@ -42,9 +41,7 @@ public class SYS002Controller {
       return VIEW_PATH;
     }
 
-    SYS002Dsp dsp = new SYS002Dsp();
-    dsp.setMutterList(outputBean.getMutterList());
-    model.addAttribute(outputBean);
+    model.addAttribute("mutterList", outputBean.getMutterList());
 
     return VIEW_PATH;
   }

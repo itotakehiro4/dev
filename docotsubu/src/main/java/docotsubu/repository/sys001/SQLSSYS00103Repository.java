@@ -1,11 +1,12 @@
 package docotsubu.repository.sys001;
 
-import org.springframework.stereotype.Repository;
-import docotsubu.repository.sys001.bean.SQLSSYS0010301Param;
+import org.apache.ibatis.annotations.Mapper;
+import docotsubu.repository.sys001.bean.SQLSSYS0010301Params;
 import docotsubu.repository.sys001.bean.SQLSSYS0010301Result;
 
-@Repository
+@Mapper
 public interface SQLSSYS00103Repository {
 
-  SQLSSYS0010301Result findOne(SQLSSYS0010301Param params);
+  SQLSSYS0010301Result findOne(SQLSSYS0010301Params params);
+
 }
