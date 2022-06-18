@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF8" />
+    <title>どこつぶ</title>
+</head>
+
+<body>
+    <h3>どこつぶメイン</h3>
+    <p th:if="${param.error}"></p>
+    <form th:action="@{/sys002/sys00203}" method="POST">
+        <div th:if="#{mutterList != null}">
+            <table>
+                <thead>
+                    <th>No.</th>
+                    <th>ユーザ名</th>
+                    <th>投稿内容</th>
+                </thead>
+                <tbody>
+                    <tr th:each="mutter : ${mutterList}">
+                        <td><span>[[${mutter.id}]]</span></td>
+                        <td><span>[[${mutter.userName}]]</span></td>
+                        <td><span>[[${mutter.text}]]</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>
