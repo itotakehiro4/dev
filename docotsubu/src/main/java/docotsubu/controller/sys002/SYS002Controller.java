@@ -65,13 +65,16 @@ public class SYS002Controller {
     SYS00203OutputBean outputBean = new SYS00203OutputBean();
     try {
       SYS00203InputBean inputBean = new SYS00203InputBean();
+      inputBean.setUserId(userBean.getUserId());
+      inputBean.setUserName(userBean.getUserName());
+      inputBean.setText(formData.getText());
       outputBean = sys00203Service.sys00203(inputBean);
     } catch (DocotsubuBusinessException e) {
       model.addAttribute("error", e.getMessage());
       return VIEW_PATH;
     }
 
-
+    model.addAttribute("info", outputBean.getMessage());
     return sys00201(model);
   }
 }

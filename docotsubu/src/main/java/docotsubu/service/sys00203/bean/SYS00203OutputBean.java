@@ -8,4 +8,6 @@ public class SYS00203OutputBean implements Serializable {
 
   private static final long serialVersionUID = 8456345219771976726L;
 
+  private String message;
+
 }

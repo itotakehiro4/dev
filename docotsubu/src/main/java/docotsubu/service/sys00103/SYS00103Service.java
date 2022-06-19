@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import docotsubu.common.exception.DocotsubuBusinessException;
 import docotsubu.common.service.cmn001.CMN001Service;
 import docotsubu.common.service.cmn001.bean.CMN001InputBean;
-import docotsubu.repository.sys001.SQLSSYS00103Repository;
-import docotsubu.repository.sys001.bean.SQLSSYS0010301Params;
-import docotsubu.repository.sys001.bean.SQLSSYS0010301Result;
+import docotsubu.repository.sys00103.SQLS00103Repository;
+import docotsubu.repository.sys00103.bean.SQLS00103Params;
+import docotsubu.repository.sys00103.bean.SQLS00103Result;
 import docotsubu.service.sys00103.bean.SYS00103InputBean;
 import docotsubu.service.sys00103.bean.SYS00103OutputBean;
 
@@ -18,7 +18,7 @@ import docotsubu.service.sys00103.bean.SYS00103OutputBean;
 public class SYS00103Service {
 
   @Autowired
-  private SQLSSYS00103Repository sQLSSYS00103Repository;
+  private SQLS00103Repository sQLS00103Repository;
 
   @Autowired
   private CMN001Service cmn001Service;
@@ -27,9 +27,9 @@ public class SYS00103Service {
       throws DocotsubuBusinessException {
 
     // ログインユーザ存在チェック
-    SQLSSYS0010301Params params = new SQLSSYS0010301Params();
+    SQLS00103Params params = new SQLS00103Params();
     params.setUserId(inputBean.getUserId());
-    SQLSSYS0010301Result result = sQLSSYS00103Repository.findOne(params);
+    SQLS00103Result result = sQLS00103Repository.findOne(params);
 
     // ユーザ情報が存在しない場合
     if (Objects.isNull(result)) {

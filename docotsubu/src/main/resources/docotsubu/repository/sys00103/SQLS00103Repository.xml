@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="docotsubu.repository.sys00103.SQLS00103Repository">
+  <select id="findOne" resultType="docotsubu.repository.sys00103.bean.SQLS00103Result">
+     SELECT
+          t1.user_id AS user_id,
+          t1.user_name AS user_name,
+          t1.password AS password,
+          t2.prvsrl_id AS prvsrl_id,
+          t1.del_flg AS del_flg
+     FROM
+          usr AS t1
+          LEFT JOIN prvsrl AS t2
+               ON t1.prvsrl_id = t2.prvsrl_id
+     WHERE
+          t1.user_id = #{userId}
+    </select>
+</mapper>

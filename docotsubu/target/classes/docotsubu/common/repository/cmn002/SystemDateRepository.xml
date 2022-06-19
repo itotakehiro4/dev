@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="docotsubu.common.repository.cmn002.SystemDateRepository">
+  <select id="findLocalDate" resultType="string">
+     SELECT
+          to_char(CURRENT_DATE, 'yyyyMMdd')
+  </select>
+  <select id="findLocalDateTime" resultType="string">
+     SELECT
+          to_char(CURRENT_TIMESTAMP, 'yyyyMMddHHMMsssss')
+  </select>
+</mapper>

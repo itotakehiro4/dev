@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="docotsubu.repository.sys00203.SQLI00203Repository">
+  <insert id="insertOne" parameterType="docotsubu.repository.sys00203.bean.SQLI00203Params">
+     INSERT INTO mutter (
+          user_name,
+          mutter_text,
+          rgst_user_id,
+          rgst_date_time,
+          upd_user_id,
+          upd_date_time,
+          user_id
+     )
+     VALUES (
+          #{userName},
+          #{text},
+          #{userId},
+          #{dateStr},
+          #{userId},
+          #{dateStr},
+          #{userId}
+     )
+    </insert>
+</mapper>

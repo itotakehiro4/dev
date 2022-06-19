@@ -8,8 +8,11 @@
 
 <body>
     <h3>どこつぶメイン</h3>
-    <p th:if="${param.error}"></p>
     <form th:action="@{/sys002/sys00203}" method="POST">
+        <div>
+            <span>つぶやき内容</span><input type="text" id="text" name="text">
+            <button id="post" name="post" type="submit">投稿</button>
+        </div>
         <div th:if="#{mutterList != null}">
             <table>
                 <thead>
